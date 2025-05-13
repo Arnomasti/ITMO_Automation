@@ -1,34 +1,30 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import time
+
+def open_saucedemo():
+    driver = webdriver.Chrome()
+    driver.get("https://www.saucedemo.com/")
+
+    try:
+
+        username_field = driver.find_element(By.ID, "user-name")
+        password_field = driver.find_element(By.ID, "password")
+        login_button = driver.find_element(By.ID, "login-button")
+
+        assert username_field is not None
+        assert password_field is not None
+        assert login_button is not None
 
 
+        if username_field and password_field and login_button:
+            print("Элементы найдены")
 
-driver = webdriver.Chrome()
-driver.get("https://www.saucedemo.com/")
+    except Exception as e:
 
+        print("Ошибка при поиске элементов:", e)
 
-username = driver.find_element(By.ID, 'user-name')
+    time.sleep(5)
+    driver.quit()
 
-if username is None:
-    print('Элементы не найдены')
-else:
-    print('Элемент найден')
-
-
-password = driver. find_element(By. ID, 'password')
-
-if password is None:
-    print('Элементы не найдены')
-else:
-    print('Элемент найден')
-
-
-submit = driver.find_element(By.ID, 'login-button')
-
-if submit is None:
-    print('Элементы не найдены')
-else:
-    print('Элемент найден')
-
-#спасибо за хорошую проверку! Переделала! Я час возилась не понимала, почему делая все строго по уроку все равно не находит элемент!
-#А оказывается все дело во внимательности... ахахха, одна деталь не так и ничего уже не работает! Но так смешно, когда ее находишь спустя столько потраченного времени!:)
+open_saucedemo()
